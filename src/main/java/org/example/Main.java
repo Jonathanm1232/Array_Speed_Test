@@ -1,17 +1,17 @@
 package org.example;
 
-import javax.swing.*;
 import java.util.*;
 import org.apache.commons.lang3.time.StopWatch;
 
+import static java.lang.System.exit;
 import static org.example.ArrayGenerator.ArrayGenerator;
 
 public class Main {
     static Object[] numbersArr;
     public static void main(String[] args) {
         // Getting the Size of the Array and how many should be put in another Array
-        int ammount = Integer.parseInt(JOptionPane.showInputDialog("How many numbers do you want?"));
-        int outputno = Integer.parseInt(JOptionPane.showInputDialog("How many numbers do you want?"));
+        int ammount = 1_000_000; // Integer.parseInt(JOptionPane.showInputDialog("How many numbers do you want?"));
+        int outputno = 100_000; //Integer.parseInt(JOptionPane.showInputDialog("How many numbers do you want?"));
 
         Object[] testData = ArrayGenerator(ammount);
 
@@ -22,6 +22,8 @@ public class Main {
         TimeArray(testData, outputno);
         TimeArrayList(testData, outputno);
         TimeHashtable(testData, outputno);
+
+        exit(0);
     }
     public static void TimeArray(Object[] data, int n) {
         StopWatch stopWatch = new StopWatch();
@@ -35,7 +37,7 @@ public class Main {
         }
 
         stopWatch.stop();
-        System.out.println("Array: " + stopWatch.getNanoTime());
+        System.out.println("Array: " + ((float) stopWatch.getNanoTime() / 1_000_000) + " ms"); // There are a million nanoseconds in a millisecond.
         stopWatch.reset();
     }
     public static void TimeArrayList(Object[] data, int n) {
@@ -51,7 +53,7 @@ public class Main {
 
         stopWatch.stop();
 
-        System.out.println("ArrayList: " + stopWatch.getNanoTime());
+        System.out.println("ArrayList: " + ((float) stopWatch.getNanoTime() / 1_000_000) + " ms");
         stopWatch.reset();
     }
 
@@ -68,6 +70,6 @@ public class Main {
 
         stopWatch.stop();
 
-        System.out.println("HashTable: " + stopWatch.getNanoTime());
+        System.out.println("HashTable: " + ((float) stopWatch.getNanoTime() / 1_000_000) + " ms");
     }
 }
