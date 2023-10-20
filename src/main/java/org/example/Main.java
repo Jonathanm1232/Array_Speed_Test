@@ -4,8 +4,6 @@ import javax.swing.*;
 import java.util.*;
 import org.apache.commons.lang3.time.StopWatch;
 
-import static org.example.ArrayGenerator.ArrayGenerator;
-
 public class Main {
     static Object[] numbersArr;
     public static void main(String[] args) {
@@ -22,6 +20,16 @@ public class Main {
         TimeArray(testData, outputno);
         TimeArrayList(testData, outputno);
         TimeHashtable(testData, outputno);
+    }
+
+    public static Object[] ArrayGenerator(int n) {
+        List<Integer> numbers = new ArrayList<Integer>();
+        for (int i = 0; i <= n; i++) {
+            numbers.add(i);
+        }
+        Collections.shuffle(numbers, new Random(4));
+        Object[] numbersArr = numbers.toArray();
+        return numbersArr;
     }
     public static void TimeArray(Object[] data, int n) {
         StopWatch stopWatch = new StopWatch();
